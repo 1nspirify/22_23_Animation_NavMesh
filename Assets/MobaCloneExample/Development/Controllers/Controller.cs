@@ -6,8 +6,8 @@ public abstract class Controller
 {
     private bool _isEnabled;
 
-    public void Enable() => _isEnabled = true;
-    public void Disable() => _isEnabled = false;
+    public virtual void Enable() => _isEnabled = true;
+    public virtual void Disable() => _isEnabled = false;
 
     public void Update(float deltaTime)
     {
