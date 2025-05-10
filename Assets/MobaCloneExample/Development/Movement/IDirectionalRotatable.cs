@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDirectionalRotatable
+public interface IDirectionalRotatable : ITransformPosition
 {
     Quaternion CurrentRotation { get; }
 

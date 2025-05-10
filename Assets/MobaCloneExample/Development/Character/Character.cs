@@ -12,6 +12,8 @@ public class Character : MonoBehaviour, IDirectionalMovable, IDirectionalRotatab
     
     public Vector3 CurrentVelocity => _mover.CurrentVelocity;
     public Quaternion CurrentRotation => _rotator.CurrentDirection;
+    
+    public Vector3 Position => transform.position; 
    
     void Awake()
     {
@@ -27,4 +29,5 @@ public class Character : MonoBehaviour, IDirectionalMovable, IDirectionalRotatab
     
     public void SetMoveDirection(Vector3 inputDirection) => _mover.SetInputDirection(inputDirection);
     public void SetRotateDirection(Vector3 inputDirection) => _rotator.SetInputDirection(inputDirection);
+  
 }

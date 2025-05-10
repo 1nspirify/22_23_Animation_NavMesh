@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDirectionalMovable
+public interface IDirectionalMovable : ITransformPosition
 {
     Vector3 CurrentVelocity { get; }
 

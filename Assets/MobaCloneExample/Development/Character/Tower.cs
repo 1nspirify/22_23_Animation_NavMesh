@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour, IDirectionalRotatable
     [SerializeField] private float _rotationSpeed;
     
     public Quaternion CurrentRotation => _rotator.CurrentDirection;
+    
+    public Vector3 Position => transform.position; 
    
     void Awake()
     {
@@ -21,4 +23,5 @@ public class Tower : MonoBehaviour, IDirectionalRotatable
     }
     
     public void SetRotateDirection(Vector3 inputDirection) => _rotator.SetInputDirection(inputDirection);
+    
 }
