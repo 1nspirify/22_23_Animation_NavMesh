@@ -40,7 +40,7 @@ public class AgentCharacterAgroController : Controller
              {
                  _idleTimer = _timeForIdle;
              }
- 
+
              if (InAgroRange(distanceToTarget) && IdleTimerIsUp())
              {
                  _agentCharacter.ResumeMove();

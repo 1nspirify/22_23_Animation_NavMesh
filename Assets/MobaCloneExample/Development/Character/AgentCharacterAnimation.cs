@@ -5,6 +5,7 @@ using UnityEngine;
 public class AgentCharacterAnimation : MonoBehaviour
 {
     private readonly int _runningKey = Animator.StringToHash("IsRunning");
+    
     [SerializeField] private Animator _animator;
     [SerializeField] private AgentCharacter _character;
     

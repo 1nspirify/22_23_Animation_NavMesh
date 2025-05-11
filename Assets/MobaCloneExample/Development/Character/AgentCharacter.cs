@@ -12,7 +12,7 @@ public class AgentCharacter : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _moveSpeed;
 
-    [SerializeField] private Transform _target;
+    // [SerializeField] private Transform _target;
 
     public Vector3 CurrentVelocity => _mover.CurrentVelocity;
 

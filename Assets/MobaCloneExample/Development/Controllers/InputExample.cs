@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.LowLevel;
 
 public class InputExample : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class InputExample : MonoBehaviour
     private Controller _enemyController;
     private Controller _agentEnemyController;
     
-
+    private InputService _inputService;
+    
     private void Awake()
     {
      
