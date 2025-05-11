@@ -12,7 +12,7 @@ public class DirectionalRotator
         _rotationSpeed = rotationSpeed;
     }
 
-    public Quaternion CurrentDirection => _transform.rotation;
+    public Quaternion CurrentRotation => _transform.rotation;
     
     public void SetInputDirection(Vector3 direction) => _currentDirection = direction;
 

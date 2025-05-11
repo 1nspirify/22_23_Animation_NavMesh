@@ -11,7 +11,7 @@ public class Character : MonoBehaviour, IDirectionalMovable, IDirectionalRotatab
     [SerializeField] private float _rotationSpeed;
     
     public Vector3 CurrentVelocity => _mover.CurrentVelocity;
-    public Quaternion CurrentRotation => _rotator.CurrentDirection;
+    public Quaternion CurrentRotation => _rotator.CurrentRotation;
     
     public Vector3 Position => transform.position; 
    

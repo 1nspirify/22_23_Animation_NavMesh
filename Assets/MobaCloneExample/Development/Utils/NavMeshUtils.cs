@@ -14,7 +14,7 @@ public class NavMeshUtils : MonoBehaviour
                 pathLenth += Vector3.Distance(path.corners[i - 1], path.corners[i]);
             }
         }
-        
+
         return pathLenth;
     }
 
@@ -22,6 +22,17 @@ public class NavMeshUtils : MonoBehaviour
         NavMeshPath pathToTarget)
     {
         if (NavMesh.CalculatePath(sourcePosition, targetPosition, queryFilter, pathToTarget) &&
+            pathToTarget.status != NavMeshPathStatus.PathInvalid)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    public static bool TryGetPath(NavMeshAgent navMeshAgent, Vector3 targetPosition, 
+        NavMeshPath pathToTarget)
+    {
+        if (navMeshAgent.CalculatePath(targetPosition, pathToTarget) &&
             pathToTarget.status != NavMeshPathStatus.PathInvalid)
         {
             return true;

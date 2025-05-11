@@ -5,16 +5,16 @@ public class InputExample : MonoBehaviour
 {
     [SerializeField] private Character _character;
     [SerializeField] private Character _enemy;
+    [SerializeField] private AgentCharacter _agentCharacter;
 
     private Controller _characterController;
     private Controller _enemyController;
-
-    // private NavMeshPath _navMeshPath;
+    private Controller _agentController;
+    
 
     private void Awake()
     {
-        // _navMeshPath = new NavMeshPath();
-
+     
         _characterController = new CompositeController(
             new PlayerDirectionalMovableController(_character),
             new AlongMovableVelocityRotatableController(_character, _character));
@@ -31,13 +31,24 @@ public class InputExample : MonoBehaviour
                 new AlongMovableVelocityRotatableController(_enemy, _enemy));
         
         _enemyController.Enable();
-    }
+        
+        _agentController = new AgentCharacterAgroController( _agentCharacter, _character.transform, 30,2,1);
+        
+        _agentController.Enable();
+    } 
 
     private void Update()
     {
         _characterController.Update(Time.deltaTime);
         
         _enemyController.Update(Time.deltaTime);
+        
+        _agentController.Update(Time.deltaTime); 
+    }
+
+    private void Start()
+    {
+        _enemy.gameObject.SetActive(false);
     }
 
     // private void OnDrawGizmosSelected()
