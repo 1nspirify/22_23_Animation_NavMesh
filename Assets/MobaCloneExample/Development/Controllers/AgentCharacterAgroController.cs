@@ -19,6 +19,7 @@ public class AgentCharacterAgroController : Controller
     public AgentCharacterAgroController(AgentCharacter agentCharacter, Transform target, float agroRange,
         float minDistanceToTarget, float timeForIdle)
     {
+        _agentCharacter = agentCharacter;
         _target = target;
         _agroRange = agroRange;
         _minDistanceToTarget = minDistanceToTarget;
@@ -39,7 +40,7 @@ public class AgentCharacterAgroController : Controller
              {
                  _idleTimer = _timeForIdle;
              }
-
+ 
              if (InAgroRange(distanceToTarget) && IdleTimerIsUp())
              {
                  _agentCharacter.ResumeMove();

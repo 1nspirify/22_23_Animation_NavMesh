@@ -9,7 +9,7 @@ public class InputExample : MonoBehaviour
 
     private Controller _characterController;
     private Controller _enemyController;
-    private Controller _agentController;
+    private Controller _agentEnemyController;
     
 
     private void Awake()
@@ -26,15 +26,15 @@ public class InputExample : MonoBehaviour
         queryFilter.areaMask = NavMesh.AllAreas;
 
         _enemyController =
-            new CompositeController(
+            new CompositeController(  
                 new DirectionalMovableAgroController(_enemy, _character.transform, 30, 2, queryFilter, 1),
                 new AlongMovableVelocityRotatableController(_enemy, _enemy));
         
         _enemyController.Enable();
         
-        _agentController = new AgentCharacterAgroController( _agentCharacter, _character.transform, 30,2,1);
+        _agentEnemyController = new AgentCharacterAgroController( _agentCharacter, _character.transform, 30,2,1);
         
-        _agentController.Enable();
+        _agentEnemyController.Enable();
     } 
 
     private void Update()
@@ -43,7 +43,7 @@ public class InputExample : MonoBehaviour
         
         _enemyController.Update(Time.deltaTime);
         
-        _agentController.Update(Time.deltaTime); 
+        _agentEnemyController.Update(Time.deltaTime); 
     }
 
     private void Start()
