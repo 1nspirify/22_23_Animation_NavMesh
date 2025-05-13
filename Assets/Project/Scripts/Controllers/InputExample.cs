@@ -43,7 +43,7 @@ namespace HomeTask
             _targetPointController =
                 new AgentCharacterTargetPointController(_agentCharacter, _inputService, 2, 0);
             _targetPointController.Enable();
-            Debug.Log("Agent character target point");
+         
         }
 
         private void Update()
