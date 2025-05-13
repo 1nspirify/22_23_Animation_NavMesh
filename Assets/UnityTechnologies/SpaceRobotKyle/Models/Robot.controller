@@ -39,7 +39,10 @@ AnimatorStateMachine:
     m_Position: {x: 0, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 210833247564343511}
-    m_Position: {x: 240, y: 250, z: 0}
+    m_Position: {x: 260, y: 250, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 7782265605629784882}
+    m_Position: {x: 120, y: 350, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -118,6 +121,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: IsWasted
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -134,7 +143,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Injurylayer
     m_StateMachine: {fileID: 8027810738277187494}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 9823b83a818794ea495bf733a9650121, type: 2}
     m_Motions:
     - serializedVersion: 2
       m_State: {fileID: 0}
@@ -142,31 +151,16 @@ AnimatorController:
     - serializedVersion: 2
       m_State: {fileID: -1421313842639547642}
       m_Motion: {fileID: 7400000, guid: 08744a72fe53446e797a3b47e3c7df0f, type: 2}
+    - serializedVersion: 2
+      m_State: {fileID: 210833247564343511}
+      m_Motion: {fileID: 7400000, guid: eeb51439919774a87896e0dad9f8b4f5, type: 2}
+    - serializedVersion: 2
+      m_State: {fileID: 7782265605629784882}
+      m_Motion: {fileID: 7400000, guid: 250c9ff9d8567435d8941c9738ec2fce, type: 2}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 0
-    m_DefaultWeight: 0
-    m_IKPass: 0
-    m_SyncedLayerAffectsTiming: 1
-    m_Controller: {fileID: 9100000}
-  - serializedVersion: 5
-    m_Name: HandsWave
-    m_StateMachine: {fileID: 7879097978878323951}
-    m_Mask: {fileID: 31900000, guid: 9823b83a818794ea495bf733a9650121, type: 2}
-    m_Motions:
-    - serializedVersion: 2
-      m_State: {fileID: -1421313842639547642}
-      m_Motion: {fileID: 7400000, guid: ce01faa5f4fb541c6915153bbebe9423, type: 2}
-    - serializedVersion: 2
-      m_State: {fileID: 0}
-      m_Motion: {fileID: 0}
-    - serializedVersion: 2
-      m_State: {fileID: 0}
-      m_Motion: {fileID: 7400000, guid: 0e17293f318df496b854416b4083643f, type: 2}
-    m_Behaviours: []
-    m_BlendingMode: 0
-    m_SyncedLayerIndex: 0
-    m_DefaultWeight: 0
+    m_DefaultWeight: 0.46
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 1
     m_Controller: {fileID: 9100000}
@@ -192,6 +186,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 89fef7efb067148db81a1cdbf0fa3ccd, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &7782265605629784882
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Wasted
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 250c9ff9d8567435d8941c9738ec2fce, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

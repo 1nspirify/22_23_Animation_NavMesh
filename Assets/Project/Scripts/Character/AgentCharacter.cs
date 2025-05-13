@@ -12,6 +12,8 @@ namespace HomeTask
         private AgentMover _mover;
         private DirectionalRotator _rotator;
 
+        [SerializeField] AgentCharacterAnimation _animation;
+        
         [SerializeField] private float _rotationSpeed;
         [SerializeField] private float _moveSpeed;
 
@@ -20,18 +22,22 @@ namespace HomeTask
         public Vector3 CurrentVelocity => _mover.CurrentVelocity;
 
         public Quaternion CurrentRotation => _rotator.CurrentRotation;
+        
+        public int Health => _health.Points;
 
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
             _agent.updateRotation = false;
 
+            _health = new CharacterHealth();
             _mover = new AgentMover(_agent, _moveSpeed);
             _rotator = new DirectionalRotator(transform, _rotationSpeed);
         }
 
         private void Update()
         {
+            Debug.Log($"Current Health {_health.Points}");
             _rotator.Update(Time.deltaTime);
         }
 
@@ -45,8 +51,14 @@ namespace HomeTask
 
         public void TakeDamage(int damage)
         {
-            int _damage = Mathf.Abs(damage);
-            _health.Health -= _damage;
+            Debug.Log($"Damage {damage} has been taken");
+
+            _health.Get(damage);
+
+            if (_health.IsWasted)
+            {
+                _animation.Die();
+            }
         }
     }
 
@@ -54,12 +66,18 @@ namespace HomeTask
     {
         private const int _maxHealth = 100;
         private const int _minHealth = 0;
-        private int _health;
+        private int points = _maxHealth;
 
-        public int Health
+        public int Points => points;
+
+        public bool IsWasted => points <= _minHealth;
+
+        public void Get(int amount)
         {
-            get => _health;
-            set => _health = value;
+            points -= Mathf.Abs(amount);
+            
+            if (points <= 0)
+                points = _minHealth;
         }
     }
 }
