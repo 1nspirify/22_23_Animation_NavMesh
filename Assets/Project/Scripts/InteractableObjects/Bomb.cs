@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -40,8 +35,9 @@ namespace HomeTask
                 {
                     AgentCharacter player = collider.GetComponent<AgentCharacter>();
                     player.TakeDamage(Damage());
-                    Debug.Log("Pooph");
+                    
                     Explode();
+                    Debug.Log("Explosion");
                     
                     break;
                 }

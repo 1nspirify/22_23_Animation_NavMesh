@@ -12,11 +12,8 @@ public class InputExample : MonoBehaviour
     private Controller _enemyController;
     private Controller _agentEnemyController;
     
-    private InputService _inputService;
-    
     private void Awake()
     {
-     
         _characterController = new CompositeController(
             new PlayerDirectionalMovableController(_character),
             new AlongMovableVelocityRotatableController(_character, _character));

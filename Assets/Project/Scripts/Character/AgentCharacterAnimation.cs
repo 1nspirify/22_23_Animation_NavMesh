@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HomeTask
@@ -11,15 +8,14 @@ namespace HomeTask
 
         [SerializeField] private Animator _animator;
         [SerializeField] private AgentCharacter _character;
-        private int _normalizer = 100;
-
-
+        
+        private int _percent = 100;
+        private const string _death  = "Wasted";
+        
         void Update()
         {
+            InjuryLayerWeightCondition();
             
-            float _injuryAnimationLayer = Mathf.Clamp01(1f - (_character.Health / 100f));
-            _animator.SetLayerWeight(1, 1 - _injuryAnimationLayer);
-
             if (_character.CurrentVelocity.magnitude > 0.05f)
             {
                 StartRunning();
@@ -29,6 +25,15 @@ namespace HomeTask
             {
                 StopRunning();
             }
+            
+        }
+
+        private void InjuryLayerWeightCondition()
+        {
+            float healthPercent = _character.Health / _percent;
+            float injuryWeight = 1f - healthPercent;
+            
+            _animator.SetLayerWeight(1, injuryWeight);
         }
 
         private void StopRunning()
@@ -43,7 +48,7 @@ namespace HomeTask
 
         public void Die()
         {
-            _animator.CrossFade("Wasted", 0.2f, 0);
+            _animator.CrossFade(_death, 0.2f, 0);
         }
     }
 }

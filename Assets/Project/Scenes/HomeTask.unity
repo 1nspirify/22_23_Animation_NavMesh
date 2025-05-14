@@ -9726,6 +9726,7 @@ MonoBehaviour:
     m_Bits: 8
   _particleSystem: {fileID: 5334487221254230989, guid: c2673a6ffed7e40c1be25b9e0189818e,
     type: 3}
+  _agentCharacter: {fileID: 4738558637677170397}
 --- !u!1001 &1291133905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10856,7 +10857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1434064707
 Transform:
   m_ObjectHideFlags: 0
@@ -10879,13 +10880,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434064705}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e384425e30ce74ac6937e3f26c6020d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _agentCharacter: {fileID: 4738558637677170397}
-  _inputService: {fileID: 0}
+  _inputService: {fileID: 1288226474}
 --- !u!1 &1442323460 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d16ca727b9b6446728fb9560db8016d8,
@@ -14867,12 +14868,12 @@ PrefabInstance:
     - target: {fileID: 6766873607007439925, guid: 120ff042df975490cb2e1ec8ca2335c0,
         type: 3}
       propertyPath: _maxDamagePoint
-      value: 40
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 6766873607007439925, guid: 120ff042df975490cb2e1ec8ca2335c0,
         type: 3}
       propertyPath: _minDamagePoint
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7545313181943660412, guid: 120ff042df975490cb2e1ec8ca2335c0,
         type: 3}
@@ -16769,7 +16770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4420d72e0ffaa495486f6eda9b51c072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animation: {fileID: 0}
+  _animation: {fileID: 7550189649274742201}
   _rotationSpeed: 999
   _moveSpeed: 10
 --- !u!135 &4738558637677170398
