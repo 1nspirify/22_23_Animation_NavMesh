@@ -47,7 +47,7 @@ public class InputExample : MonoBehaviour
 
     private void Start()
     {
-        _enemy.gameObject.SetActive(false);
+        // _enemy.gameObject.SetActive(false);
     }
 
     // private void OnDrawGizmosSelected()
