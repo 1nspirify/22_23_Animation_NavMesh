@@ -1,19 +1,17 @@
- using UnityEngine;
+using UnityEngine;
 
-public class DirectionalRotator 
+public abstract class DirectionalRotator 
 {
-    private Transform _transform;
     private float _rotationSpeed;
     private Vector3 _currentDirection;
 
-    public DirectionalRotator(Transform transform, float rotationSpeed)
+    public DirectionalRotator(float rotationSpeed)
     {
-        _transform = transform;
         _rotationSpeed = rotationSpeed;
     }
 
-    public Quaternion CurrentRotation => _transform.rotation;
-    
+    public abstract Quaternion CurrentRotation { get; }
+
     public void SetInputDirection(Vector3 direction) => _currentDirection = direction;
 
     public void Update(float deltaTime)
@@ -24,7 +22,8 @@ public class DirectionalRotator
         
         float step = _rotationSpeed * deltaTime;
         
-        _transform.rotation = Quaternion.RotateTowards(_transform.rotation, lookRotation, step);
+        ApplyRotation(Quaternion.RotateTowards(CurrentRotation, lookRotation, step));
 
     }
+    protected abstract void ApplyRotation(Quaternion rotation);
 }

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem.LowLevel;
 
 public class InputExample : MonoBehaviour
 {
@@ -22,8 +21,8 @@ public class InputExample : MonoBehaviour
 
         NavMeshQueryFilter queryFilter = new NavMeshQueryFilter();
         queryFilter.agentTypeID = 0;
-        queryFilter.areaMask = NavMesh.AllAreas;
-
+        queryFilter.areaMask = 1;
+ 
         _enemyController =
             new CompositeController(  
                 new DirectionalMovableAgroController(_enemy, _character.transform, 30, 2, queryFilter, 1),
@@ -47,7 +46,7 @@ public class InputExample : MonoBehaviour
 
     private void Start()
     {
-        // _enemy.gameObject.SetActive(false);
+        _enemy.gameObject.SetActive(false);
     }
 
     // private void OnDrawGizmosSelected()

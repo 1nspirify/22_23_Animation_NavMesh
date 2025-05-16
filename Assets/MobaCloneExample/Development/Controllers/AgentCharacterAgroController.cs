@@ -10,7 +10,7 @@ public class AgentCharacterAgroController : Controller
 
     private float _agroRange;
     private float _minDistanceToTarget;
-    
+
     private float _idleTimer;
     private float _timeForIdle;
 
@@ -28,31 +28,42 @@ public class AgentCharacterAgroController : Controller
 
     protected override void UpdateLogic(float deltaTime)
     {
-         _idleTimer -= Time.deltaTime;
-         
-         _agentCharacter.SetRotationDirection(_agentCharacter.CurrentVelocity);
-        
-         if (_agentCharacter.TryGetPath(_target.position, _pathToTarget))
-         {
-             float distanceToTarget = NavMeshUtils.GetPathLength(_pathToTarget);
+        _idleTimer -= Time.deltaTime;
 
-             if (IsTargetReached(distanceToTarget))
-             {
-                 _idleTimer = _timeForIdle;
-             }
+        if (_agentCharacter.IsOnNavMeshLink(out OffMeshLinkData offMeshLinkData))
+        {
+            if (_agentCharacter.InJumpProcess == false)  
+            {
+                _agentCharacter.SetRotationDirection(offMeshLinkData.endPos - offMeshLinkData.startPos);
+                _agentCharacter.Jump(offMeshLinkData);
+            }
 
-             if (InAgroRange(distanceToTarget) && IdleTimerIsUp())
-             {
-                 _agentCharacter.ResumeMove();
-                 _agentCharacter.SetDestination(_target.position); 
-                 return;
-             }
-         }
-         
-         _agentCharacter.StopMove();
+            return;
+        }
+
+        _agentCharacter.SetRotationDirection(_agentCharacter.CurrentVelocity);
+
+        if (_agentCharacter.TryGetPath(_target.position, _pathToTarget))
+        {
+            float distanceToTarget = NavMeshUtils.GetPathLength(_pathToTarget);
+
+            if (IsTargetReached(distanceToTarget))
+            {
+                _idleTimer = _timeForIdle;
+            }
+
+            if (InAgroRange(distanceToTarget) && IdleTimerIsUp())
+            {
+                _agentCharacter.ResumeMove();
+                _agentCharacter.SetDestination(_target.position);
+                return;
+            }
+        }
+
+        _agentCharacter.StopMove();
     }
-    
-    
+
+
     private bool IsTargetReached(float distanceToTarget) => distanceToTarget <= _minDistanceToTarget;
     private bool InAgroRange(float distanceToTarget) => distanceToTarget <= _agroRange;
     private bool IdleTimerIsUp() => _idleTimer <= 0;

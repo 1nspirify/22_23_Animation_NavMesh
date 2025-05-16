@@ -18,13 +18,21 @@ public class Character : MonoBehaviour, IDirectionalMovable, IDirectionalRotatab
     void Awake()
     {
         if (TryGetComponent(out CharacterController characterController))
+        {
             _mover = new CharacterControllerDirectionalMover(characterController, _movementSpeed);
+            _rotator = new TransformDirectionalRotator(transform, _rotationSpeed);
+        }
+
         else if (TryGetComponent(out Rigidbody rigidbody))
-            _mover = new RigidbodyDirectionalMover(rigidbody , _movementSpeed);
+        {
+            _mover = new RigidbodyDirectionalMover(rigidbody, _movementSpeed);
+            _rotator = new RigidbodyDirectionalRotator(rigidbody, _rotationSpeed);
+        }
+
         else
-     Debug.LogError("Mover component not found");
-        
-        _rotator = new DirectionalRotator(transform, _rotationSpeed);
+        {
+            Debug.LogError("Mover component not found");
+        }
     }
 
     void Update()
