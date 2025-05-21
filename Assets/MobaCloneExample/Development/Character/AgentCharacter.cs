@@ -17,8 +17,6 @@ public class AgentCharacter : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private AnimationCurve _jumperCurve;
 
-    // [SerializeField] private Transform _target;
-
     public Vector3 CurrentVelocity => _mover.CurrentVelocity;
 
     public Quaternion CurrentRotation => _rotator.CurrentRotation;

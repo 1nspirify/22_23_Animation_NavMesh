@@ -10,8 +10,6 @@ public class AgentCharacterAnimation : MonoBehaviour
     
     void Update()
     {
-        
-        
         if (_character.CurrentVelocity.magnitude > 0.05f)
         {
             StartRunning();
@@ -21,7 +19,6 @@ public class AgentCharacterAnimation : MonoBehaviour
         {
             StopRunning();
         }
-        
     }
 
     private void StopRunning()

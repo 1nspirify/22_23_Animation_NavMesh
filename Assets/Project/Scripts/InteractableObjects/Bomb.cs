@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,14 +11,11 @@ namespace HomeTask
 
         [SerializeField] private float _explodeRadius = 4f;
         [SerializeField] private ParticleSystem _explodeParticles;
-        
+
+        private float _delayExplosion = 3f;
+        private bool _isExploded;
+
         private int Damage() => Random.Range(_minDamagePoint, _maxDamagePoint);
-        
-        public void Explode()
-        {
-            Instantiate(_explodeParticles, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
 
         private void OnDrawGizmos()
         {
@@ -27,20 +25,41 @@ namespace HomeTask
 
         private void Update()
         {
+            if (_isExploded) return;
+
             Collider[] colliders = Physics.OverlapSphere(transform.position, _explodeRadius);
 
             foreach (Collider collider in colliders)
-                
+
                 if (collider.GetComponent<AgentCharacter>() != null)
                 {
-                    AgentCharacter player = collider.GetComponent<AgentCharacter>();
-                    player.TakeDamage(Damage());
-                    
-                    Explode();
-                    Debug.Log("Explosion");
-                    
+                    StartCoroutine(Explode());
+                    Debug.LogWarning("Collider has been detected");
+
                     break;
                 }
+        }
+
+        private IEnumerator Explode()
+        {
+            yield return new WaitForSeconds(_delayExplosion);
+
+            Collider[] colliders = Physics.OverlapSphere(transform.position, _explodeRadius);
+
+            foreach (Collider collider in colliders)
+            {
+                if (collider.GetComponent<AgentCharacter>() != null)
+                {
+                    Debug.LogWarning("Explosion in 3 seconds");
+                    AgentCharacter player = collider.GetComponent<AgentCharacter>();
+                    
+                    player.TakeDamage(Damage());
+                    _isExploded = true;
+                }
+            }
+
+            Instantiate(_explodeParticles, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
