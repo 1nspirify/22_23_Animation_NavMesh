@@ -4,7 +4,8 @@ namespace HomeTask
 {
     public class AgentCharacterAnimation : MonoBehaviour
     {
-        private readonly int _runningKey = Animator.StringToHash("IsRunning");
+        private readonly int IsRunningKey = Animator.StringToHash("IsRunning"); 
+        private readonly int InJumpProcessKey = Animator.StringToHash("InJumpProcess");
 
         [SerializeField] private Animator _animator;
         [SerializeField] private AgentCharacter _character;
@@ -14,6 +15,8 @@ namespace HomeTask
         
         void Update()
         {
+            _animator.SetBool(InJumpProcessKey, _character.InJumpProcess);
+            
             InjuryLayerWeightCondition();
             
             if (_character.CurrentVelocity.magnitude > 0.05f)
@@ -38,12 +41,12 @@ namespace HomeTask
 
         private void StopRunning()
         {
-            _animator.SetBool(_runningKey, true);
+            _animator.SetBool(IsRunningKey, true);
         }
 
         private void StartRunning()
         {
-            _animator.SetBool(_runningKey, false);
+            _animator.SetBool(IsRunningKey, false);
         }
 
         public void Die()

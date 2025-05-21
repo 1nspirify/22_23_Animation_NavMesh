@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +7,7 @@ namespace HomeTask
     {
         private AgentCharacter _agentCharacter;
         private InputService _inputService;
-        
+
         private float _minDistanceToTarget;
 
         private float _idleTimer;
@@ -17,10 +15,9 @@ namespace HomeTask
 
         private NavMeshPath _pathToTarget = new NavMeshPath();
 
-        public AgentCharacterTargetPointController(AgentCharacter agentCharacter, InputService inputService ,
+        public AgentCharacterTargetPointController(AgentCharacter agentCharacter, InputService inputService,
             float minDistanceToTarget, float timeForIdle)
         {
-            
             _agentCharacter = agentCharacter;
             _minDistanceToTarget = minDistanceToTarget;
             _timeForIdle = timeForIdle;
@@ -31,15 +28,25 @@ namespace HomeTask
         {
             _idleTimer -= Time.deltaTime;
 
+            if (_agentCharacter.IsOnNavMeshLink(out OffMeshLinkData offMeshLinkData))
+            {
+                if (_agentCharacter.InJumpProcess == false)
+                {
+                    _agentCharacter.SetRotationDirection(offMeshLinkData.endPos - offMeshLinkData.startPos);
+                    _agentCharacter.Jump(offMeshLinkData);
+                }
+                  
+                return;
+            }
+
             Vector3 target = _inputService.Target;
-      
+
             _agentCharacter.SetRotationDirection(_agentCharacter.CurrentVelocity);
-     
+
             if (_agentCharacter.TryGetPath(target, _pathToTarget))
             {
-              
                 float distanceToTarget = NavMeshUtils.GetPathLength(_pathToTarget);
-       
+
                 if (IsTargetReached(distanceToTarget))
                 {
                     _idleTimer = _timeForIdle;
@@ -56,7 +63,8 @@ namespace HomeTask
             _agentCharacter.StopMove();
         }
 
-        private bool IsTargetReached(float distanceToTarget) => distanceToTarget <= _minDistanceToTarget;
-        private bool IdleTimerIsUp() => _idleTimer <= 0;
+        bool IsTargetReached(float distanceToTarget) => distanceToTarget <= _minDistanceToTarget;
+        bool IdleTimerIsUp() => _idleTimer <= 0;
     }
 }
+
