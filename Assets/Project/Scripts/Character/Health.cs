@@ -8,11 +8,11 @@ namespace HomeTask
         private const int _minHealth = 0;
         private int currentPoints = _maxHealth;
 
-        private bool _isAlive;
+        private bool _isOver;
         public int CurrentPoints => currentPoints;
-        public bool IsAlive => currentPoints > _minHealth;
+        public bool IsOver => currentPoints <= _minHealth;
 
-        public void Get(int amount)
+        public void TakeDamage(int amount)
         {
             currentPoints -= Mathf.Abs(amount);
 

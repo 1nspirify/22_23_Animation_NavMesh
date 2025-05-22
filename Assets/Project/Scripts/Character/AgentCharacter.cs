@@ -27,7 +27,7 @@ namespace HomeTask
 
         public int Health => _health.CurrentPoints;
 
-        public bool IsAlive => _health.IsAlive;
+        public bool IsDead => _health.IsOver;
 
         private void Awake()
         {
@@ -72,9 +72,9 @@ namespace HomeTask
         {
             Debug.Log($"Damage {damage} has been taken");
 
-            _health.Get(damage);
+            _health.TakeDamage(damage);
 
-            if (_health.IsAlive == false)
+            if (_health.IsOver)
             {
                 _animation.Die();
             }

@@ -8,13 +8,13 @@ namespace HomeTask
     {
         [SerializeField] private int _minDamagePoint = 5;
         [SerializeField] private int _maxDamagePoint = 15;
-
         [SerializeField] private float _explodeRadius = 4f;
-        [SerializeField] private ParticleSystem _explodeParticles;
 
+        [SerializeField] private BombView _bombView;
+        
         private float _delayExplosion = 3f;
         private bool _isExploded;
-
+        
         private int Damage() => Random.Range(_minDamagePoint, _maxDamagePoint);
 
         private void OnDrawGizmos()
@@ -52,13 +52,13 @@ namespace HomeTask
                 {
                     Debug.LogWarning("Explosion in 3 seconds");
                     AgentCharacter player = collider.GetComponent<AgentCharacter>();
-                    
+
                     player.TakeDamage(Damage());
                     _isExploded = true;
                 }
             }
 
-            Instantiate(_explodeParticles, transform.position, Quaternion.identity);
+            _bombView.Explosion();
             Destroy(gameObject);
         }
     }

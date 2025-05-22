@@ -13,17 +13,17 @@ namespace HomeTask
 
         private void Update()
         {
-            if (_agentCharacter.IsAlive)
+            if (_agentCharacter.IsDead)
+                return;
+            
+            if (Input.GetMouseButtonDown(0))
             {
-                if (Input.GetMouseButtonDown(0))
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _layerMask))
                 {
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    
-                    if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _layerMask))
-                    {
-                        _lastTarget = hit.point;
-                        Instantiate(_particleSystem, hit.point, Quaternion.identity);
-                    }
+                    _lastTarget = hit.point;
+                    Instantiate(_particleSystem, hit.point, Quaternion.identity);
                 }
             }
         }
