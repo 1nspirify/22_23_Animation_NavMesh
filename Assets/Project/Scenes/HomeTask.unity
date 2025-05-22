@@ -814,7 +814,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 65985739}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 335295833}
+        m_TargetAssemblyTypeName: AudioHandler, Assembly-CSharp
+        m_MethodName: MusicSwitcher
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &65985739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2190,7 +2202,7 @@ GameObject:
   - component: {fileID: 335295831}
   - component: {fileID: 335295833}
   m_Layer: 0
-  m_Name: Sound
+  m_Name: AudioService
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2205,7 +2217,8 @@ AudioSource:
   m_GameObject: {fileID: 335295830}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7900248693895553202, guid: e1a47d57d01e54c7bad2d240ca926d46,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 5eb28c414b05f46368fb2fb73a39ff4f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2316,9 +2329,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 335295830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d9e8d242961b428cb99158ed714a4ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 295e3bd13a9654ef5901d70827cc1b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioMixer: {fileID: 24100000, guid: e1a47d57d01e54c7bad2d240ca926d46, type: 2}
 --- !u!1001 &337180692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6970,7 +6984,7 @@ GameObject:
   - component: {fileID: 932657876}
   - component: {fileID: 932657877}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: VerticalGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14840,7 +14854,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2096337223}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 335295833}
+        m_TargetAssemblyTypeName: AudioHandler, Assembly-CSharp
+        m_MethodName: SoundSwitcher
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2096337223
 MonoBehaviour:
   m_ObjectHideFlags: 0
