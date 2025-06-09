@@ -9,11 +9,14 @@ public class Character : MonoBehaviour, IDirectionalMovable, IDirectionalRotatab
 
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private Transform _cameraTarget;
 
     public Vector3 CurrentVelocity => _mover.CurrentVelocity;
     public Quaternion CurrentRotation => _rotator.CurrentRotation;
 
     public Vector3 Position => transform.position;
+    
+    public Transform CameraTarget => _cameraTarget;
 
     void Awake()
     {

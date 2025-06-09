@@ -22,6 +22,7 @@ namespace HomeTask
             _minDistanceToTarget = minDistanceToTarget;
             _timeForIdle = timeForIdle;
             _inputService = inputService;
+            _idleTimer = _timeForIdle;
         }
 
         protected override void UpdateLogic(float deltaTime)
@@ -30,6 +31,7 @@ namespace HomeTask
 
             if (_agentCharacter.IsOnNavMeshLink(out OffMeshLinkData offMeshLinkData))
             {
+                
                 if (_agentCharacter.InJumpProcess == false)
                 {
                     _agentCharacter.SetRotationDirection(offMeshLinkData.endPos - offMeshLinkData.startPos);
@@ -45,6 +47,13 @@ namespace HomeTask
 
             if (_agentCharacter.TryGetPath(target, _pathToTarget))
             {
+                
+                if (target == Vector3.zero)
+                {
+                    _agentCharacter.StopMove();
+                    return;
+                }
+                
                 float distanceToTarget = NavMeshUtils.GetPathLength(_pathToTarget);
 
                 if (IsTargetReached(distanceToTarget))

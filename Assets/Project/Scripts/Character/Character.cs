@@ -18,9 +18,7 @@ namespace HomeTask
         public Vector3 CurrentVelocity => _mover.CurrentVelocity;
 
         public Quaternion CurrentRotation => _rotator.CurrentRotation;
-        
-        
-
+         
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
